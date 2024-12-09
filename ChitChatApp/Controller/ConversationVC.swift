@@ -6,21 +6,28 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ConversationVC: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .red
-
+     
         // Do any additional setup after loading the view.
     }
+    
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let isLogin = UserDefaults.standard.bool(forKey: "logged_in")
-        if !isLogin {
+        validateAuth()
+        
+    }
+    private func validateAuth() {
+        if FirebaseAuth.Auth.auth().currentUser == nil {
             performSegue(withIdentifier: AppSegue.loginSegue.getSegueId, sender: nil)
+        } else {
+            performSegue(withIdentifier: AppSegue.splashToDashboardSegue.getSegueId, sender: nil)
         }
     }
+    
 
 }

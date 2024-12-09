@@ -6,8 +6,19 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class LoginVC: UIViewController {
+    
+    override func viewWillAppear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = true
+        self.tabBarController?.tabBar.isHidden = true
+
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        navigationController?.navigationBar.isHidden = false
+        self.tabBarController?.tabBar.isHidden = false
+    }
 
     @IBOutlet weak var passwordTextFld: UITextField!
     @IBOutlet weak var userNameTextFld: UITextField!
@@ -26,6 +37,16 @@ class LoginVC: UIViewController {
         guard let email = userNameTextFld.text, let password = passwordTextFld.text, !email.isEmpty, !password.isEmpty, password.count >= 8 else {
             loginAlert()
             return
+        }
+        FirebaseAuth.Auth.auth().signIn(withEmail: email, password: password) { authResult, error in
+          
+            guard let result = authResult,error == nil else {
+                print("Fail to log in user with email: \(email)")
+                return
+            }
+            let user = result.user
+            print(user)
+            self.performSegue(withIdentifier: AppSegue.loginToDashboardSegue.getSegueId, sender: nil)
         }
     }
     func loginAlert() {

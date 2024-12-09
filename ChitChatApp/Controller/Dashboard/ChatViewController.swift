@@ -1,20 +1,19 @@
 //
-//  ProfileVC.swift
+//  ChatViewController.swift
 //  ChitChatApp
 //
-//  Created by Raj Mohan on 26/11/24.
+//  Created by Raj Mohan on 07/12/24.
 //
 
 import UIKit
 
-class ProfileVC: UIViewController {
+class ChatViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
- 
 
         // Do any additional setup after loading the view.
     }
-   
+    
 
 }

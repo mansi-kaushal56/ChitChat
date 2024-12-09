@@ -16,3 +16,20 @@ class ViewGreyBorder: UIView {
         layer.cornerRadius = 12
     }
 }
+class ViewBlueBorder: UIView {
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        layer.borderColor = UIColor.AppBlueClr?.cgColor
+        layer.borderWidth = 1
+        layer.cornerRadius = 12
+    }
+}
+class ViewPurpleBorder: UIView {
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        layer.borderColor = UIColor.AppPerpleClr?.cgColor
+        layer.borderWidth = 1
+        layer.cornerRadius = 12
+    }
+}
+
